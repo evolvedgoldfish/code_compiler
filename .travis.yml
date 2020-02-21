@@ -1,0 +1,11 @@
+sudo: required
+services:
+    - docker
+
+after_success:
+    - docker build -t evolvedgoldfish/code_compiler_frontend ./frontend
+    - docker build -t evolvedgoldfish/code_compiler_nginx ./nginx
+    - echo "$DOCKERPASSWORD" | docker login -u "$DOCKERID" --password-stdin
+    - docker push evolvedgoldfish/code_compiler_frontend
+    - docker push evolvedgoldfish/code_compiler_nginx
+
