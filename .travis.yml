@@ -2,7 +2,7 @@ sudo: required
 services:
     - docker
 
-after_success:
+script:
     - docker build -t evolvedgoldfish/code_compiler_frontend ./frontend
     - docker build -t evolvedgoldfish/code_compiler_nginx ./nginx
     - echo "$DOCKERPASSWORD" | docker login -u "$DOCKERID" --password-stdin
